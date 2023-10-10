@@ -15,6 +15,15 @@ const friends = [
     }
 ];
 
+// Middleware function
+app.use((req, res, next) => {
+    const start = Date.now();
+    next();
+    // Actions
+    const delta = Date.now() - start; //Mesure the time of process. it's different from Postman time mesure;
+    console.log(`${req.method} ${req.url} ${delta}ms`); //Log requests from Postman
+});
+
 app.get('/friends', (req, res) => {
     res.json(friends);
 });

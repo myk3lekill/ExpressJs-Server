@@ -24,6 +24,22 @@ app.use((req, res, next) => {
     console.log(`${req.method} ${req.url} ${delta}ms`); //Log requests from Postman
 });
 
+app.use(express.json()); //Built-in Express Middleware function. this affect the next middleware function
+
+app.post('/friends', (req, res) => {
+    if(!req.body.name) {
+        return res.status(400).json({
+            error: 'Missing friend name'
+        });
+    }
+    const newFriend = {
+        name: req.body.name, //We need middleware esxpress.json() to acces name property
+        id: friends.length
+    }
+    friends.push(newFriend);
+    res.json(newFriend);
+});
+
 app.get('/friends', (req, res) => {
     res.json(friends);
 });

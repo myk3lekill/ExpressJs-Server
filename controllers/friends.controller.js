@@ -13,18 +13,18 @@ function postFriend(req, res) {
         id: model.length
     }
     model.push(newFriend);
-    res.json(newFriend);
+    res.json(newFriend); // This is the View Field in MVC
 };
 
 function getFriends(req, res) {
-    res.json(model);
+    res.json(model); // This is the View Field in MVC
 };
 
 function getFriend(req, res) {
     const friendId = Number(req.params.friendId);
     const friend = model[friendId];
     if (friend) {
-        res.status(200).json(friend);
+        res.status(200).json(friend); // This is the View Field in MVC
     } else {
         res.status(404).json({
             error: "Friend does not exist"

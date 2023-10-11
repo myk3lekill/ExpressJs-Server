@@ -1,6 +1,7 @@
+
 const express = require('express');
 
-// Import
+// Import Controllers
 const friendController = require('./controllers/friends.controller');
 const messageController = require('./controllers/message.controller');
 

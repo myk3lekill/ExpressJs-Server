@@ -4,7 +4,7 @@ const path = require('path');
 // Use named function instead of arrow function to best debug management
 function getMessages(req, res) {
     //res.send('<ul><li>Helloo Albert!</li></ul>');
-    const myFile = path.join(__dirname,'..', 'public', 'skimountain.jpg')//__dirname avoid absolute path declaration but remeber to specify the position with '..'
+    const myFile = path.join(__dirname,'..', 'public', 'images', 'skimountain.jpg')//__dirname avoid absolute path declaration but remeber to specify the position with '..'
     res.sendFile(myFile)
 };
 

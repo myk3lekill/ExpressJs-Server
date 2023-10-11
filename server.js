@@ -25,9 +25,9 @@ app.use((req, res, next) => {
 app.use('/site', express.static(path.join(__dirname, 'public')));// use the path.join to avoid the path limitation on different OS.
 app.use(express.json()); //Built-in Express Middleware function. this affect the next function
 
-// Serve the Templating Engine index.hbs
+// Serve the Templating Engine index.hbs (now layout.hbs)
 app.get('/', (req, res) => {
-    res.render('index', {
+    res.render('image', {
         title: 'My Friend are very clever',
         caption: 'Let\'s go skiing'
     });

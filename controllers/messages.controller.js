@@ -5,7 +5,12 @@ const path = require('path');
 function getMessages(req, res) {
     //res.send('<ul><li>Helloo Albert!</li></ul>');
     const myFile = path.join(__dirname,'..', 'public', 'images', 'skimountain.jpg')//__dirname avoid absolute path declaration but remeber to specify the position with '..'
-    res.sendFile(myFile)
+    //res.sendFile(myFile)
+    // Serve the Templating Engine messages.hbs
+    res.render('messages', {
+        title: 'Message to my frined',
+        friend: 'Elon Musk'
+    });
 };
 
 function postMessage(req, res) {

@@ -1,5 +1,9 @@
 const express = require('express');
 
+// Import
+const friendController = require('./controllers/friends.controller');
+const messageController = require('./controllers/message.controller');
+
 const app = express();
 
 const PORT = 3000;
@@ -24,8 +28,9 @@ app.use((req, res, next) => {
     console.log(`${req.method} ${req.url} ${delta}ms`); //Log requests from Postman
 });
 
-app.use(express.json()); //Built-in Express Middleware function. this affect the next middleware function
+app.use(express.json()); //Built-in Express Middleware function. this affect the next function
 
+// Route Handlers
 app.post('/friends', (req, res) => {
     if(!req.body.name) {
         return res.status(400).json({
@@ -33,7 +38,7 @@ app.post('/friends', (req, res) => {
         });
     }
     const newFriend = {
-        name: req.body.name, //We need middleware esxpress.json() to acces name property
+        name: req.body.name, //We need middleware esxpress.json() to acces name property of the body
         id: friends.length
     }
     friends.push(newFriend);
@@ -57,13 +62,9 @@ app.get('/friends/:friendId', (req, res) => {
     }
 });
 
-app.get('/messages', (req, res) => {
-    res.send('<h1>Hellooooo!</h1>')
-});
+app.get('/messages', messageController.getMessages);
 
-app.post('/messages', (req, res) => {
-    res.send('Updating messages......')
-})
+app.post('/messages', messageController.postMessage);
 
 app.listen(PORT, ()=>{
     console.log(`Listening on ${PORT}...`)

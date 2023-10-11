@@ -7,6 +7,10 @@ const messagesRouter = require('./routes/messages.router');
 
 const app = express();
 
+// Use Templating Engines
+app.set('view engine', 'hbs')
+app.set('views', path.join(__dirname, 'views'));
+
 const PORT = 3000;
 
 
@@ -20,6 +24,14 @@ app.use((req, res, next) => {
 });
 app.use('/site', express.static(path.join(__dirname, 'public')));// use the path.join to avoid the path limitation on different OS.
 app.use(express.json()); //Built-in Express Middleware function. this affect the next function
+
+// Serve the Templating Engine index.hbs
+app.get('/', (req, res) => {
+    res.render('index', {
+        title: 'My Friend are very clever',
+        caption: 'Let\'s go skiing'
+    });
+})
 
 // Mount Routers
 app.use('/friends', friendsRouter); // Use friendsRouter as middleware. set the route '/friends'
